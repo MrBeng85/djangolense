@@ -1,0 +1,72 @@
+@import 'home.css';
+
+div.edition-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+#id_title {
+    width: 100%;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background-color: rgb(15,23,42);
+    color: white;
+    border: none;
+    text-align: center;
+}
+
+#id_content {
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 2.25rem;
+    max-width: 648px;
+    margin: 0;
+    color: white;
+    background-color: rgb(15,23,42);
+    border: none;
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 30px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #34D399;
+}
+
+input[type="checkbox"]:not(:checked) {
+    background-color: #FB7185;
+}
+button[type="submit"] {
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #1E293B;
+    background-color: #FACC15;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #D8E7EB;
+    transition: background-color 0.3s ease;
+}
+
+

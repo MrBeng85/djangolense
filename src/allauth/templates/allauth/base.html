@@ -1,0 +1,33 @@
+{% extends 'app/home.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}<link rel="stylesheet" href="{% static 'allauth/base.css' %}"> {% endblock %}
+    <title>Enregistrement</title>
+</head>
+<body>
+    {% block content %}
+    <div class="content-connexion-signup">
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {% if form is not None %}
+                {{ form.as_p }}
+            {% endif %}
+            {% if erreur %}
+                <p class="erreur">{{ erreur }}</p>
+            {% endif %}
+            <input type="submit" value="Valider">
+        </form>
+        {% if request.path == '/accounts/login/' %}
+            <a href="{% url 'account_signup' %}" class="navigation-connect-signup" >Créez vous un compte</a>
+        {% elif request.path == '/accounts/signup/' %}
+            <a href="{% url 'account_login' %}" class="navigation-connect-signup" >Connectez vous</a>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

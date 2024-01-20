@@ -1,0 +1,17 @@
+{% extends 'app/home.html' %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'app/css/edit.css' %}">{% endblock %}
+
+
+{% block content %}
+    <div class="edition-article">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <button type="submit">Sauvegarder</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}<link rel="stylesheet" href="{% static 'app/css/home.css' %}">{% endblock %}
+    <title>Elie Garcia</title>
+
+</head>
+<body>
+    <div class="nav">
+        <div class="bar-de-navigation" >
+            <a href="https://www.elie-garcia.com" ><img src="{% static 'app/img/icon.png' %}" class="icon"></a>
+            <span class="link-portfolio"><a class="link3" >Portfolio d'Elie</a></span>
+        </div>
+        <ul class="bar-de-navigation"> 
+            {% if request.user.is_authenticated %}
+                <li class="nav"><a href="{% url 'app-edit' slug='append_article' %}"><img  style="max-height: 30px;" src="{% static 'app/img/append1.png' %}"></a></li>
+            {% endif %}
+            <li class="nav"><a href="{% url 'app-home' %}" class="nav" >Home</a></li>  
+            {% if request.user.is_authenticated %}
+                <li class="nav"><a class="nav" href="{% url 'app-profile' user_id=request.user.id %}">Profil</a></li>
+                <li class="nav"><a class="nav" href="{% url 'account_logout' %}">Se déconnecter</a></li>
+            {% elif not request.user.is_authenticated %}
+                {% if request.path == '/accounts/login/' %}
+                    <li class="nav"><a class="nav" href="{% url 'account_signup' %}">S'inscrire</a></li>
+                {% elif request.path == '/accounts/signup/' %}
+                    <li class="nav"><a class="nav" href="{% url 'account_login' %}">Se connecter</a></li>
+                {% else %}
+                    <li class="nav"><a class="nav" href="{% url 'account_login' %}">Se connecter</a></li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+
+    {% block content %}
+        <br>
+        <form action="" method="get" class="search">
+            <span class="img-search">
+                <button type="submit" class="search-article" ><img class="search-article" src="{% static 'app/img/search-icon.png' %}" alt="rechercher"></button>
+            </span>
+            <input type="search" name="recherche" placeholder="Search" class="search-article">
+        </form>
+
+        {% if not articles %}
+            <br><br>
+            <h1 style="text-align: center;">Il n'y a pas d'articles correspondant à votre recherche...</h1>
+            <br>
+            <h1 style="text-align: center;"><a class="link2" href="{% url 'app-home'   %}">| Pour continuer à chercher |</a></h1>
+            <br>
+        {% else %}
+            {% for article in articles %}
+                {% if article.published or article.user == request.user %}
+                    <div class="article">
+                        {% if article.user.profile_image %}
+                            <div class="image-project"><a href="{% url 'app-article' slug=article.slug %}" class="image-project" ><img class="project" src="{{ article.user.profile_image.url }}"></a></div>
+                        {% else %}
+                            <div class="image-project"><a href="{% url 'app-article' slug=article.slug %}" class="image-project"><img class="project" src="{% static 'app/img/default_profile.png' %}"></a></div>
+                        {% endif %}
+                        <div class="article-content" >
+                            <div class="top">
+                                <a href="{% url 'app-article' slug=article.slug %}" class="project-link" >{{article.title|title }}</a>
+                                <a href="{% url 'app-profile' user_id=article.user.id %}"><div class="author">{{ article.user.username }}</div></a>
+                                {% if not article.published %}
+                                    <div class="non-publie">Non publié</div> 
+                                {% endif %}
+                            </div>
+                            <br>
+                            <p>{{article.content|truncatewords:30}}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,81 @@
+@import 'home.css';
+
+.login-form {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1E293B;
+    color: rgb(243 244 246);
+    border-radius: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+    width: calc(100% - 20px); /* Subtract the padding-right value from the width */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #1E293B;
+    background-color: #FACC15;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #D8E7EB;
+    transition: background-color 0.3s ease;
+}
+
+.erreur {
+    color: red;
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder,
+.login-form input[type="email"]::placeholder {
+    color: #A0AEC0;
+    font-style: italic;
+}
+
+.navigation-connect-signup {
+    margin-top: 30px;
+    color: #FACC15;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    /* BEGIN: Custom styles for navigation-connect-signup */
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    /* END: Custom styles for navigation-connect-signup */
+}
+
+.navigation-connect-signup:hover {
+    color: #D8E7EB;
+    /* BEGIN: Custom styles for navigation-connect-signup on hover */
+    background-color: #555;
+    /* END: Custom styles for navigation-connect-signup on hover */
+}
+
+div.content-connexion-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

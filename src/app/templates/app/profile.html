@@ -1,0 +1,79 @@
+{% extends 'app/home.html' %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'app/css/profile.css' %}">{% endblock %}
+
+{% block content %}
+    <section class="header_profile">
+        <div class="profile-image-username">
+            {% if user.profile_image %}
+                <a href="{% url 'app-profile-image' user_id=user.id %}"><img class="first-image-profile-username" src="{{ user.profile_image.url }}"></a>
+            {% else %}
+                <a href="{% url 'app-profile-image' user_id=user.id %}" ><img class="first-image-profile-username" src="{% static 'app/img/default_profile.png' %}"></a>
+            {% endif %}
+            <div class="username" style="color: #16B8EB;">
+                {{user.username}}
+                {% if request.user == user %}
+                    <a href="{% url 'app-profile-image' user_id=user.id %}" ><img src="{% static 'app/img/edition.png' %}" class="edition-second-image-profile" ></a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="infos-profile">
+            <div class="username">
+                {{ articles.count }}
+            </div>
+            <div class="username">{% if articles.count == 1 %}Post{% else %}Posts{% endif %}</div>
+        </div>
+        {% if request.user == user %}
+        <div class="append-article">
+            <a href="{% url 'app-edit' slug='append_article' %}" ><img src="{% static 'app/img/append1.png' %}"></a>
+        </div>
+        {% endif %}
+    </section>
+    <section class="profile-content">
+        {% for article in articles %}
+            {% if request.user == article.user %}
+                <div class="article">
+                    <div class="image-project">
+                        {% if user.profile_image %}
+                            <a href="{% url 'app-article' slug=article.slug %}" class="image-project" ><img class="project" src="{{ user.profile_image.url }}"></a>
+                        {% else %}
+                            <a href="{% url 'app-article' slug=article.slug %}" class="image-project"><img class="project" src="{% static 'app/img/default_profile.png' %}"></a>
+                        {% endif %}
+                    </div>
+                    <div class="article-content">
+                            <div class="top">
+                                <a href="{% url 'app-article' slug=article.slug %}" class="project-link" >{{article.title|title }}</a>
+                                {% if article.published %}
+                                    <div class="publie">Publié</div> 
+                                {% else %}
+                                    <div class="non-publie">Non publié</div> 
+                                {% endif %}
+                            </div>
+                        <br>
+                        <p>{{article.content|truncatewords:30}}</p>
+                    </div>
+                </div>
+            {% elif article.published %}
+                <div class="article">
+                    <div class="image-project">
+                        {% if user.profile_image %}
+                            <a href="{% url 'app-article' slug=article.slug %}" class="image-project" ><img class="project" src="{{ user.profile_image.url }}"></a>
+                        {% else %}
+                            <a href="{% url 'app-article' slug=article.slug %}" class="image-project"><img class="project" src="{% static 'app/img/default_profile.png' %}"></a>
+                        {% endif %}
+                    </div>
+                    <div class="article-content" >
+                        <div class="top">
+                            <a href="{% url 'app-article' slug=article.slug %}" class="project-link" >{{article.title|title }}</a>
+                        </div>
+                        <br>
+                        <p>{{article.content|truncatewords:30}}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %} 
+
+    </section>
+{% endblock %}

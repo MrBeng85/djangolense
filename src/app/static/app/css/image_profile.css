@@ -1,0 +1,58 @@
+@import 'home.css';
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1E293B;
+    color: rgb(243 244 246);
+    border-radius: 10px;
+}
+
+div.profile-image-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image {
+    margin-bottom: 20px;
+}
+
+.profile-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+form input {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+p {
+    font-size: 1rem;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #1E293B;
+    background-color: #FACC15;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #D8E7EB;
+    transition: background-color 0.3s ease;
+}
+

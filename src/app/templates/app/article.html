@@ -1,0 +1,30 @@
+{% extends 'app/home.html' %}
+{% load static %}
+
+
+
+{% block css %}<link rel="stylesheet" href="{% static 'app/css/article.css' %}"> {% endblock %}
+
+{% block content %}
+    <section class="header">
+        <div class="profile-image-username">
+            {% if article.user.profile_image %}
+                <a href="{% url 'app-profile' user_id=article.user.id %}"><img src="{{ article.user.profile_image.url }}"></a>
+            {% else %}
+                <a href="{% url 'app-profile' user_id=article.user.id %}" ><img src="{% static 'app/img/default_profile.png' %}"></a>
+            {% endif %}
+            <a href="{% url 'app-profile' user_id=article.user.id %}" ><div class="username" style="color: #16B8EB;">{{article.user.username}}</div></a>
+        </div>
+        <h1 class="title" >{{article.title|title}}</h1>
+    </section>
+
+
+    <div class="article-content" ><p>{{article.content}}</p></div>
+    {% if request.user == article.user %}
+        <div class="actions">
+            <a href="{% url 'app-edit' slug=article.slug %}"><img src="{% static 'app/img/edition.png' %}" ></a>
+            <a href="{% url 'app-delete' pk=article.pk %}"><img src="{% static 'app/img/poubelle.png' %}" alt=""></a>
+        </div>
+    {% endif %}
+
+{% endblock %}
