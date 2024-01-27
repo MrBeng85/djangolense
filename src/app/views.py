@@ -12,7 +12,7 @@ def home(request):
     articles = Article.objects.all()
     if request.method == 'GET':
         name = request.GET.get('recherche')
-        if name != "":
+        if name != "" and name != None:
             name = name.lower()
 
             articles_by_title = Article.objects.filter(title__icontains=name)
