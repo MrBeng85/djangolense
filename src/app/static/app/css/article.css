@@ -1,6 +1,5 @@
 @import 'home.css';
 
-
 h1.title {
     text-align: center;
     margin-left: auto;
@@ -58,4 +57,45 @@ div.actions a {
 
 div.actions img {
     height: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    section.header {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    section.header img {
+        width: 200px;
+        height: 200px;
+    }
+
+    div.article-content {
+        max-width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    div.username {
+        font-size: 20px;
+    }
+
+    div.actions {
+        font-size: 24px;
+    }
+
+    div.actions a {
+        margin-right: 20px;
+    }
+
+    div.actions img {
+        height: 30px;
+    }
 }
