@@ -62,7 +62,7 @@ div.actions img {
 @media only screen and (max-width: 600px) {
     section.header {
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 21px;
     }
 
     section.header img {
