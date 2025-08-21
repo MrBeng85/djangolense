@@ -1,6 +1,5 @@
 from django import forms
-from .models import Article
-from .models import CustomUser
+from .models import Article, Commentaire, CustomUser
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -22,5 +21,8 @@ class ProfileImageForm(forms.ModelForm):
         self.fields['profile_image'].required = False
         self.fields['profile_image'].widget = forms.FileInput()
         
-
+class CommentaireForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire
+        fields = ['content', 'user', 'article']
 

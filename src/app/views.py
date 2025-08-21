@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, CustomUser
-from .forms import ArticleForm, ProfileImageForm
+from .models import Article, Commentaire, CustomUser
+from .forms import ArticleForm, ProfileImageForm, CommentaireForm
 from itertools import chain
 
 articles = Article.objects.all()
@@ -28,8 +28,27 @@ def home(request):
     return render(request, 'app/home.html', context=context)
 
 def article(request, slug):
+    user = request.user
     article = get_object_or_404(Article, slug=slug)
-    return render(request, 'app/article.html', context={'article': article})
+    initial = {'user': user, 'article': article}
+    if request.method == 'POST':
+        commentaire = CommentaireForm(request.POST, initial=initial)
+        if commentaire.is_valid():
+            commentaire.save()
+    try :
+        Commentaire.objects.get(user=user, article=article)
+        form = False
+    except:
+        initial = {'content': 'Inserez votre commentaire ici', 'user': user, 'article': article}
+        form = CommentaireForm(initial=initial)
+    commentaires_existants = Commentaire.objects.filter(article=article)
+    context = {
+        'article': article, 
+        'commentaires': commentaires_existants, 
+        'form': form
+    }
+    return render(request, 'app/article.html', context)
+
 
 def profile(request, user_id):
     try:
@@ -60,7 +79,6 @@ def edit(request, slug):
         initial = {'user': user, 'title': 'Inserez un titre ici', 'content': 'Inserez votre contenu ici'}
         form = ArticleForm(initial=initial)
         if request.method == 'POST':
-            print( 'ArticleForm(request.POST).data -------------------------->' ,ArticleForm(request.POST).data)
             if ArticleForm(request.POST).data.get('title') != initial.get('title') or ArticleForm(request.POST).data.get('content') != initial.get('content'):
                 article = ArticleForm(request.POST).save(commit=False)
                 article.user = user

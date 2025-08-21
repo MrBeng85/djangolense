@@ -22,9 +22,36 @@
     <div class="article-content" ><p>{{article.content}}</p></div>
     {% if request.user == article.user %}
         <div class="actions">
-            <a href="{% url 'app-edit' slug=article.slug %}"><img src="{% static 'app/img/edition.png' %}" ></a>
-            <a href="{% url 'app-delete' pk=article.pk %}"><img src="{% static 'app/img/poubelle.png' %}" alt=""></a>
+            <a href="{% url 'app-edit' slug=article.slug %}"><img src="{% static 'app/img/edition.png' %}"></a>
+            <a href="{% url 'app-delete' pk=article.pk %}"><img src="{% static 'app/img/poubelle.png' %}"></a>
         </div>
+
     {% endif %}
+
+    {% if commentaires %} 
+        {% for commentaire in commentaires %}
+            <div class="comment">
+                {% if commentaire.user.profile_image %}
+                    <a href="{% url 'app-profile' user_id=commentaire.user.id %}">auteur = {{commentaire.user.username}}  <img src="{{ commentaire.user.profile_image.url }}"></a>
+                {% else %}
+                    <a href="{% url 'app-profile' user_id=commentaire.user.id %}">auteur = {{commentaire.user.username}}  <img src="{% static 'app/img/default_profile.png' %}"></a>
+                {% endif %}
+                <h1>contenue = </h1>{{commentaire.conztent}}
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+    
+    {% if request.user.is_authenticated and form != False %}
+        {% if request.user != article.user %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button type="submit">Commenter</button>
+            </form>  
+        {% endif %}
+    {% endif %}
+ 
 
 {% endblock %}

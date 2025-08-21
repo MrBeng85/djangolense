@@ -12,7 +12,6 @@ class Article(models.Model):
     published = models.BooleanField(default=False, verbose_name='Publié', blank=True)
     slug = models.SlugField(blank=True, null=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
- 
     class Meta:
         verbose_name_plural = 'Articles'
         unique_together = ['title', ]
@@ -24,3 +23,8 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Commentaire(models.Model):
+    content = models.TextField(verbose_name='Contenue')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
