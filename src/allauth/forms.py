@@ -4,7 +4,7 @@ from app.models import CustomUser
 class SignupForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'password']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
