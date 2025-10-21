@@ -1,35 +1,46 @@
 {% extends 'app/home.html' %}
 {% load static %}
 
-{% block css %} <link rel="stylesheet" href="{% static 'app/css/acceuil.css' %}"> {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/acceuil.css' %}">
+{% endblock %}
 
 {% block content %}
-<p style="color: white; text-align: center;">
-    <h1 style="font-weight: bold; text-align: center;">🚀 Bienvenue sur Djangolens</h1><br><br>
+<div class="home-content" style="color: white; text-align: center; max-width: 900px; margin: auto; line-height: 1.6;">
+
+    <h1 style="font-weight: bold; text-align: center;">🚀 Bienvenue sur Djangolense</h1>
     <br>
-    <h2 style="font-weight: bold; color: white;">À propos de Djangolens</h2><br>
-    <p>Djangolens est bien plus qu'une simple application web ; c'est une vitrine interactive de mes compétences en développement. Conçue avec passion et expertise, cette plateforme vous offre une expérience utilisateur fluide et intuitive tout en mettant en valeur mes capacités techniques.</p><br><br>
 
-    <h2 style="font-weight: bold; color: white;">FONCTIONNALITÉS PRINCIPALES</h2><br>
-    <h2 style="font-weight: bold; color: white;">🔑 Gestion des Utilisateurs Simplifiée :</h2> 
-    <p>Créez votre compte en un clin d'œil, connectez-vous et explorez les fonctionnalités avec facilité. Chaque utilisateur bénéficie d'un profil personnalisé avec une image de profil modifiable à volonté.</p><br>
-    <h2 style="font-weight: bold; color: white;">✏️ Création d'Articles :</h2> 
-    <p>Exprimez-vous en toute liberté en créant, modifiant ou supprimant vos propres articles. Choisissez de les publier immédiatement ou de les garder en brouillon pour une édition ultérieure.</p><br>
-    <h2 style="font-weight: bold; color: white;">🔍 Recherche Intuitive :</h2> 
-    <p>Trouvez rapidement ce que vous cherchez grâce à notre fonction de recherche avancée. Explorez les articles ou les profils d'utilisateurs en toute simplicité depuis la page d'accueil.</p><br><br>
+    <h2 style="font-weight: bold;">À propos</h2>
+    <p>
+        <strong>Djangolense</strong> est une application web développée avec <strong>Django</strong>, pensée comme un espace
+        d’expérimentation et de démonstration des fonctionnalités essentielles d’un site moderne.
+        Elle met en œuvre une architecture claire, une base de données relationnelle, et une interface simple
+        intégralement rendue côté serveur.
+    </p>
 
-    <h2 style="font-weight: bold; color: white;">TECHNOLOGIE UTILISÉE</h2><br>
-    <p>Djangolens est propulsé par Django, le framework backend robuste et polyvalent. En utilisant Django, je mets en œuvre des solutions efficaces et évolutives pour répondre à vos besoins sur vos propres projets. Je mets à jour régulièrement de nouvelles fonctionnalités pour toujours développer mes compétences et étendre ma zone de connaissances.💡</p><br><br>
+    <br>
+    <h2 style="font-weight: bold;">Fonctionnalités principales</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li>🔐 <strong>Gestion des utilisateurs</strong> : inscription, connexion et profils personnalisables avec image.</li>
+        <li>📝 <strong>Création d’articles</strong> : rédaction, modification, suppression et gestion des brouillons.</li>
+        <li>🔍 <strong>Recherche dynamique</strong> : exploration rapide des articles et profils depuis la page d’accueil.</li>
+    </ul>
 
-    <h2 style="font-weight: bold; color: white;">🎯 Exposition de Compétences :</h2> 
-    <p>En démontrant mes compétences à travers cette application, je vous assure un aperçu authentique de mes capacités en développement web.</p><br>
-    <h2 style="font-weight: bold; color: white;">💼 Pour Les Futurs Projets :</h2> 
-    <p>Que vous cherchiez à développer une application similaire ou à explorer d'autres projets, Djangolens vous montre comment je peux vous accompagner dans la réalisation de vos objectifs.</p><br>
-    <h2 style="font-weight: bold; color: white;">🌟 Expérience Transparente :</h2> 
-    <p>Avec une interface conviviale et des fonctionnalités intuitives, Djangolens offre une expérience transparente à chaque utilisateur, mettant en lumière mes compétences en développement.</p><br><br>
+    <br>
+    <h2 style="font-weight: bold;">Technologies</h2>
+    <p>
+        <strong>Django</strong> gère la logique serveur, les vues et la sécurité.<br>
+        <strong>SQLite / PostgreSQL</strong> assurent la gestion des données selon l’environnement.<br>
+        <strong>HTML & CSS</strong> structurent et stylisent l’interface côté serveur, pour un rendu rapide et épuré.
+    </p>
 
-</p>
+    <br>
+    <h2 style="font-weight: bold;">Objectif</h2>
+    <p>
+        Djangolense illustre le fonctionnement complet d’un site web Django : de la gestion des utilisateurs à la manipulation
+        de contenu dynamique, en passant par l’intégration du design et la structuration des vues.
+    </p>
 
-
-
+</div>
 {% endblock %}
